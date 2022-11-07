@@ -20,6 +20,7 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
+        document.getElementById('informacion').innerHTML="<h2>"+e.latlng+"</h2>";
 
     console.log(e)
 }
