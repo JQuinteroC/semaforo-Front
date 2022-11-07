@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion semaforos</title>
 
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
         integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
@@ -14,15 +15,17 @@
 </head>
 
 <body>
-    <div id="map" style="height: 880px;"></div>
-    <div id="desc" style="display: none;">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorum quibusdam incidunt ratione, harum numquam rerum fugit hic excepturi
-            blanditiis perspiciatis possimus voluptate quae nulla labore velit nam fugiat ducimus saepe!
-        </p>
+
+    <div id="wrapper">
+        <div id="map"></div>  
+        <div id="descripcion-semaforo">
+            <p id="informacion"></p>
+        </div>
         <button onclick="onClickBackButton()">Volver</button>
     </div>
-    <script src="map.js"></script>
+
+<script src="map.js"></script>    
+
 </body>
 
 </html>

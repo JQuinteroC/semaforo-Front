@@ -13,8 +13,14 @@ var cl34cr28Marker = L.marker([4.621037, -74.166030]).addTo(map);
 var popup = L.popup();
 
 function onMapClick(e) {
-    
 
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+        document.getElementById('informacion').innerHTML="<h2>"+e.latlng+"</h2>";
+
+    console.log(e)
     map.setView(e.latlng, 19);
     document.getElementById("desc").style.display = "block";
 }
