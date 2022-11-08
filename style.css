@@ -9,8 +9,8 @@ body {
 }
 
 #descripcion-semaforo{
-    width: 30px; 
-    float: left;
+    width: auto; 
+    float: center;
 }
 
 #reloj{
