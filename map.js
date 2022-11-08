@@ -18,7 +18,7 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
-        //document.getElementById('informacion').innerHTML="<h2>"+e.latlng+"</h2>";
+    //document.getElementById('informacion').innerHTML="<h2>"+e.latlng+"</h2>";
 
     console.log(e)
     map.setView(e.latlng, 19);
@@ -31,6 +31,39 @@ cl34cr28Marker.on('click', onMapClick);
 
 function onClickBackButton(e) {
     map.setView(origin, 13);
-    document.getElementById('informacion').innerHTML=initmsg;
+    document.getElementById('informacion').innerHTML = initmsg;
     document.getElementById("desc").style.display = "none";
+}
+
+google.charts.load('current', { 'packages': ['timeline'] });
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    var container = document.getElementById('timeline');
+    var chart = new google.visualization.Timeline(container);
+    var dataTable = new google.visualization.DataTable();
+
+    dataTable.addColumn({ type: 'string', id: 'President' });
+    dataTable.addColumn({ type: 'string', id: 'dummy bar label' });
+    dataTable.addColumn({ type: 'string', id: 'style', role: 'style' });
+    dataTable.addColumn({ type: 'date', id: 'Start' });
+    dataTable.addColumn({ type: 'date', id: 'End' });
+    dataTable.addRows([
+        ['Señal 2', '', '#ed7161', new Date(0, 0, 0, 0, 0, 0, 0), new Date(0, 0, 0, 0, 0, 49, 0)], //rojo
+        ['Señal 4', '', '#88c057', new Date(0, 0, 0, 0, 0, 0, 0), new Date(0, 0, 0, 0, 0, 35, 0)], //verde
+        ['Señal 4', '', '#fdca66', new Date(0, 0, 0, 0, 0, 35, 0), new Date(0, 0, 0, 0, 0, 38, 0)], //amarillo
+        ['Señal 4', '', '#ed7161', new Date(0, 0, 0, 0, 0, 38, 0), new Date(0, 0, 0, 0, 0, 49, 0)],
+        ['Señal 91', '', '#ed7161', new Date(0, 0, 0, 0, 0, 0, 0), new Date(0, 0, 0, 0, 0, 39, 0)],
+        ['Señal 91', '', '#f59e63', new Date(0, 0, 0, 0, 0, 39, 0), new Date(0, 0, 0, 0, 0, 41, 0)], //rojo-amarillo
+        ['Señal 91', '', '#88c057', new Date(0, 0, 0, 0, 0, 41, 0), new Date(0, 0, 0, 0, 0, 47, 0)],
+        ['Señal 91', '', '#fdca66', new Date(0, 0, 0, 0, 0, 47, 0), new Date(0, 0, 0, 0, 0, 49, 0)],
+        ['Señal 22', '', '#88c057', new Date(0, 0, 0, 0, 0, 0, 0), new Date(0, 0, 0, 0, 0, 28, 0)],
+        ['Señal 22', '', '#50782d', new Date(0, 0, 0, 0, 0, 28, 0), new Date(0, 0, 0, 0, 0, 31, 0)], //verde intermitente
+        ['Señal 22', '', '#ed7161', new Date(0, 0, 0, 0, 0, 31, 0), new Date(0, 0, 0, 0, 0, 49, 0)],
+    ]);
+
+    var options = {
+        tooltip: { trigger: 'none' },
+    }
+
+    chart.draw(dataTable, options);
 }
