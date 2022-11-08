@@ -18,11 +18,11 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
-        document.getElementById('informacion').innerHTML="<h2> Las coordenadas del semaforo son: "+e.latlng+"</h2>";
+        //document.getElementById('informacion').innerHTML="<h2>"+e.latlng+"</h2>";
 
     console.log(e)
     map.setView(e.latlng, 19);
-
+    document.getElementById("desc").style.display = "block";
 }
 
 cr13cl41Marker.on('click', onMapClick);
@@ -33,7 +33,4 @@ function onClickBackButton(e) {
     map.setView(origin, 13);
     document.getElementById('informacion').innerHTML=initmsg;
     document.getElementById("desc").style.display = "none";
-    
 }
-
-

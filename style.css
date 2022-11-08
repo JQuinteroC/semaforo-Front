@@ -2,23 +2,12 @@ body {
     background-color: white;
   }
 #map {
-    width: 70%;
-    height: 880px;
+    position:inherit;
+    border: 1px solid black;
+    width: 100%;
+    height: 700px;
     float: left;
-
-}
-
-#descripcion-semaforo{
-    width: auto; 
-    float: center;
-}
-
-#reloj{
-    width: 400px;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    position: relative;
-    float: center;
+    display: flex;
 }
 
 
