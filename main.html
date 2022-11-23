@@ -22,14 +22,14 @@
       <div class="col-9">
         <div id="map"></div>
       </div>
-      <div class="col-3">
+      <div class="col-3" id="panel_derecho" style="display:none;">
         <p id="informacion"></p>
-        <h2 style="text-align: center">Cruce semaforico: ABC</h2>
+        <h2 style="text-align: center" id="nombre_cruce">Cruce semaforico: ABC</h2>
         <hr></hr>
 
           <div class="col-auto text-center">
             <img src="resources\cl34cr28.bmp" class="img-responsive center-block" alt="Cruce semafórico" width="200"
-              height="200"></img>
+              height="200" id="diagrama_semaforico"></img>
           </div>
         
           <hr></hr>
@@ -51,13 +51,11 @@
 
         <hr></hr>
 
-        
-
       <div class="col-auto text-center">
         <div class="btn-group text-center">
           <button class="btn btn-primary" onclick="onClickBackButton()">Volver</button>
-          <button class="btn btn-danger" onclick="onClickBackButton()">Reanudar la rutina</button>
-          <button class="btn btn-success" onclick="onClickBackButton()">Detener la rutina</button>
+          <button class="btn btn-danger" onclick="onClickResumeButton()">Reanudar la rutina</button>
+          <button class="btn btn-success" onclick="onClickStopButton()">Detener la rutina</button>
         </div>
       </div>
 
@@ -78,8 +76,8 @@
     </div>
   </div>
 
-  <div id="wrapper">
-    <div class="gant">
+  <div id="wrapper" class="container-fluid">
+    <div class="gant" id="gant" style="visibility:hidden;" >
         <h5>Plan de señales</h5>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="timeline" style="min-height: 25vh;"></div>
