@@ -41,9 +41,13 @@ function onMapClick(e) {
       console.log("Cruce: Cra 80 con Dg 43 Sur ");
       document.getElementById("diagrama_semaforico").src= "resources\\cl80dg43.bmp";
       document.getElementById("nombre_cruce").innerHTML = "Cruce: Cll. 80 - Dg. 43 Sur"
+            
       cruceEscogido = 3;
       break;
   }
+
+  document.getElementById("map").style.height = "700px"
+  document.getElementById("map").style.width = "100%"
 
   // Cargar información del cruce
 
@@ -63,6 +67,8 @@ function onClickBackButton(e) {
   //document.getElementById('informacion').innerHTML = initmsg;
   document.getElementById("panel_derecho").style.display = "none";
   document.getElementById("gant").style.visibility = "hidden";
+  document.getElementById("map").style.height = "1000px"
+  document.getElementById("map").style.width = "140%"
 }
 
 google.charts.load("current", { packages: ["timeline"] });

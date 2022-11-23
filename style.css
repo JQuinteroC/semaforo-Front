@@ -4,10 +4,11 @@ body {
 #map {
     position:inherit;
     border: 1px solid black;
-    width: 100%;
-    height: 700px;
+    width: 140%;
+    height: 1000px;
     float: left;
     display: flex;
 }
+
 
 
