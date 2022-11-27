@@ -46,7 +46,7 @@ function onMapClick(e) {
       break;
   }
 
-  document.getElementById("map").style.height = "700px"
+  document.getElementById("map").style.height = "800px"
   document.getElementById("map").style.width = "100%"
 
   // Cargar información del cruce

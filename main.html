@@ -33,19 +33,22 @@
           </div>
         
           <hr></hr>
-        <div id="div-semaforos">
+          
+        <div class="container text-center" id="div-semaforos">
           <h5>Esquema semaforico</h5>
-          <div>
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
+          <div class=row"">
+              <img id="semaforo_1" src="resources\rojo.png" alt="..." class="img-thumbnail" width="60" height="60">
+              <img id="semaforo_2" src="resources\amarillo.png" alt="..." class="img-thumbnail" width="60" height="60">
+              <img id="semaforo_3" src="resources\verde.png" alt="..." class="img-thumbnail" width="60" height="60">
+              <img id="semaforo_4" src="resources\intermitencia_amarillo.gif" alt="..." class="img-thumbnail" width="60" height="60">
+              <img id="semaforo_pea_1" src="resources\rojo_peatonal.png" alt="..." class="img-thumbnail" width="60" height="60">
           </div>
-          <div>
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
-              <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fthesquid.ink%2Ffree-flat-sample%2F1024%2Ftraffic-light-icon.png&f=1&nofb=1&ipt=99be66550080e635a18025fb150b171496b28e4d3db3b36f0c3d8b157283a1f0&ipo=images" alt="..." class="img-thumbnail" width="100" height="100">
+          <div >
+            <img id="semaforo_5" src="resources\rojo.png" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_6" src="resources\amarillo.png" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_7" src="resources\verde.png" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_8" src="resources\intermitencia_rojo.gif" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_pea_2" src="resources\intermitencia_verde_peatonal.gif" alt="..." class="img-thumbnail" width="60" height="60">
           </div>
         </div>
 
@@ -54,8 +57,8 @@
       <div class="col-auto text-center">
         <div class="btn-group text-center">
           <button class="btn btn-primary" onclick="onClickBackButton()">Volver</button>
-          <button class="btn btn-danger" onclick="onClickResumeButton()">Reanudar la rutina</button>
-          <button class="btn btn-success" onclick="onClickStopButton()">Detener la rutina</button>
+          <button class="btn btn-success" onclick="onClickResumeButton()">Reanudar la rutina</button>
+          <button class="btn btn-danger" onclick="onClickStopButton()">Detener la rutina</button>
         </div>
       </div>
 
