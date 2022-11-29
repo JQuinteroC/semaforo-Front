@@ -14,6 +14,8 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
     integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+  <script type="text/javascript"></script>
 </head>
 
 <body>
@@ -25,89 +27,96 @@
       <div class="col-3" id="panel_derecho" style="display:none;">
         <p id="informacion"></p>
         <h2 style="text-align: center" id="nombre_cruce">Cruce semaforico: ABC</h2>
-        <hr></hr>
+        <hr>
+        </hr>
 
-          <div class="col-auto text-center">
-            <img src="resources\cl34cr28.bmp" class="img-responsive center-block" alt="Cruce semafórico" width="200"
-              height="200" id="diagrama_semaforico"></img>
-          </div>
-        
-          <hr></hr>
-          
+        <div class="col-auto text-center">
+          <img src="resources\cl34cr28.bmp" class="img-responsive center-block" alt="Cruce semafórico" width="200"
+            height="200" id="diagrama_semaforico"></img>
+        </div>
+
+        <hr>
+        </hr>
+
         <div class="container text-center" id="div-semaforos">
           <h5>Esquema semaforico</h5>
           <div class=row"">
-              <img id="semaforo_1" src="resources\rojo.png" alt="..." class="img-thumbnail" width="60" height="60">
-              <img id="semaforo_2" src="resources\amarillo.png" alt="..." class="img-thumbnail" width="60" height="60">
-              <img id="semaforo_3" src="resources\verde.png" alt="..." class="img-thumbnail" width="60" height="60">
-              <img id="semaforo_4" src="resources\intermitencia_amarillo.gif" alt="..." class="img-thumbnail" width="60" height="60">
-              <img id="semaforo_pea_1" src="resources\rojo_peatonal.png" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_1" src="resources\rojo.png" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_2" src="resources\amarillo.png" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_3" src="resources\verde.png" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_4" src="resources\intermitencia_amarillo.gif" alt="..." class="img-thumbnail" width="60"
+              height="60">
+            <img id="semaforo_pea_1" src="resources\intermitencia_rojo_peatonal.gif" alt="..." class="img-thumbnail" width="60"
+              height="60">
           </div>
-          <div >
+          <div>
             <img id="semaforo_5" src="resources\rojo.png" alt="..." class="img-thumbnail" width="60" height="60">
             <img id="semaforo_6" src="resources\amarillo.png" alt="..." class="img-thumbnail" width="60" height="60">
-            <img id="semaforo_7" src="resources\verde.png" alt="..." class="img-thumbnail" width="60" height="60">
-            <img id="semaforo_8" src="resources\intermitencia_rojo.gif" alt="..." class="img-thumbnail" width="60" height="60">
-            <img id="semaforo_pea_2" src="resources\intermitencia_verde_peatonal.gif" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_7" src="resources\intermitencia_verde.gif" alt="..." class="img-thumbnail" width="60" height="60">
+            <img id="semaforo_8" src="resources\intermitencia_rojo.gif" alt="..." class="img-thumbnail" width="60"
+              height="60">
+            <img id="semaforo_pea_2" src="resources\intermitencia_verde_peatonal.gif" alt="..." class="img-thumbnail"
+              width="60" height="60">
           </div>
         </div>
 
-        <hr></hr>
+        <hr>
+        </hr>
 
-      <div class="col-auto text-center">
-        <div class="btn-group text-center">
-          <button class="btn btn-primary" onclick="onClickBackButton()">Volver</button>
-          <button class="btn btn-success" onclick="onClickResumeButton()">Reanudar la rutina</button>
-          <button class="btn btn-danger" onclick="onClickStopButton()">Detener la rutina</button>
+        <div class="col-auto text-center">
+          <div class="btn-group text-center">
+            <button class="btn btn-primary" onclick="onClickBackButton()">Volver</button>
+            <!-- <button class="btn btn-success" onclick="onClickResumeButton()">Reanudar la rutina</button>
+            <button class="btn btn-danger" onclick="onClickStopButton()">Detener la rutina</button> -->
+          </div>
+
+          <hr>
+          </hr>
+
+
+          <div id=reloj class="card bg-dark text-white">
+            <h3 class="card-title text-center">
+              <div class="d-flex flex-wrap justify-content-center mt-2">
+                <a><span class="badge hours"></span></a> :
+                <a><span class="badge min"></span></a> :
+                <a><span class="badge sec"></span></a>
+              </div>
+            </h3>
+          </div>
+
         </div>
       </div>
-
-      <hr></hr>
-
-
-      <div id=reloj class="card bg-dark text-white">
-        <h3 class="card-title text-center">
-        <div class="d-flex flex-wrap justify-content-center mt-2">
-            <a><span class="badge hours"></span></a> :
-            <a><span class="badge min"></span></a> :
-            <a><span class="badge sec"></span></a>
-        </div>
-        </h3>
     </div>
 
-      </div>
-    </div>
-  </div>
-
-  <div id="wrapper" class="container-fluid">
-    <div class="gant" id="gant" style="visibility:hidden;" >
+    <div id="wrapper" class="container-fluid">
+      <div class="gant" id="gant" style="visibility:hidden;">
         <h5>Plan de señales</h5>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <div id="timeline" style="min-height: 25vh;"></div>
+      </div>
+
+      <div id="descripcion-semaforo">
+        <p id="informacion"></p>
+      </div>
+
     </div>
 
-    <div id="descripcion-semaforo">
-      <p id="informacion"></p>
-    </div>
-
-  </div>
-
-  <script src="map.js"></script>
-  <script>
-    $(document).ready(function() {
-    setInterval( function() {
-    var hours = new Date().getHours();
-    $(".hours").html(( hours < 10 ? "0" : "" ) + hours);
-    }, 1000);
-    setInterval( function() {
-    var minutes = new Date().getMinutes();
-    $(".min").html(( minutes < 10 ? "0" : "" ) + minutes);
-    },1000);
-    setInterval( function() {
-    var seconds = new Date().getSeconds();
-    $(".sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-    },1000);
-    });
+    <script src="map.js"></script>
+    <script>
+      $(document).ready(function () {
+        setInterval(function () {
+          var hours = new Date().getHours();
+          $(".hours").html((hours < 10 ? "0" : "") + hours);
+        }, 1000);
+        setInterval(function () {
+          var minutes = new Date().getMinutes();
+          $(".min").html((minutes < 10 ? "0" : "") + minutes);
+        }, 1000);
+        setInterval(function () {
+          var seconds = new Date().getSeconds();
+          $(".sec").html((seconds < 10 ? "0" : "") + seconds);
+        }, 1000);
+      });
     </script>
 </body>
 

@@ -1,4 +1,5 @@
 const origin = [4.62027, -74.103551];
+const PATH = "http://localhost:8081/";
 var map = L.map("map").setView(origin, 13);
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
@@ -12,6 +13,7 @@ var cl34cr28Marker = L.marker([4.624194, -74.076283]).addTo(map);
 var cr80dg43Marker = L.marker([4.621037, -74.16603]).addTo(map);
 
 var cruceEscogido = 0;
+var historicoCruces = {};
 
 var popup = L.popup();
 
@@ -28,20 +30,20 @@ function onMapClick(e) {
     case "LatLng(4.628984, -74.066974)":
       console.log("Cruce: Cra 13 con Cll 41 ");
       cruceEscogido = 1;
-      document.getElementById("diagrama_semaforico").src= "resources\\cr13cl41.bmp";
+      document.getElementById("diagrama_semaforico").src = "resources\\cr13cl41.bmp";
       document.getElementById("nombre_cruce").innerHTML = "Cruce: Cra. 13 - Cll. 41"
       break;
     case "LatLng(4.624194, -74.076283)":
       console.log("Cruce: Cll 34 con Cra 28");
-      document.getElementById("diagrama_semaforico").src= "resources\\cl34cr28.bmp";
+      document.getElementById("diagrama_semaforico").src = "resources\\cl34cr28.bmp";
       document.getElementById("nombre_cruce").innerHTML = "Cruce: Cll. 34 - Cra. 28"
       cruceEscogido = 2;
       break;
     case "LatLng(4.621037, -74.16603)":
       console.log("Cruce: Cra 80 con Dg 43 Sur ");
-      document.getElementById("diagrama_semaforico").src= "resources\\cl80dg43.bmp";
+      document.getElementById("diagrama_semaforico").src = "resources\\cl80dg43.bmp";
       document.getElementById("nombre_cruce").innerHTML = "Cruce: Cll. 80 - Dg. 43 Sur"
-            
+
       cruceEscogido = 3;
       break;
   }
@@ -64,6 +66,7 @@ cl34cr28Marker.on("click", onMapClick);
 
 function onClickBackButton(e) {
   map.setView(origin, 13);
+  cruceEscogido = 0;
   //document.getElementById('informacion').innerHTML = initmsg;
   document.getElementById("panel_derecho").style.display = "none";
   document.getElementById("gant").style.visibility = "hidden";
@@ -78,8 +81,8 @@ function drawChart() {
   var chart = new google.visualization.Timeline(container);
   var dataTable = new google.visualization.DataTable();
 
-  dataTable.addColumn({ type: "string", id: "President" });
-  dataTable.addColumn({ type: "string", id: "dummy bar label" });
+  dataTable.addColumn({ type: "string", id: "Señal" });
+  dataTable.addColumn({ type: "string", id: "Bar label" });
   dataTable.addColumn({ type: "string", id: "style", role: "style" });
   dataTable.addColumn({ type: "date", id: "Start" });
   dataTable.addColumn({ type: "date", id: "End" });
@@ -169,3 +172,117 @@ function drawChart() {
 
   chart.draw(dataTable, options);
 }
+
+function getData() {
+  if (cruceEscogido != 0) {
+    $.ajax({
+      url: PATH + "gpr-semaforico?id=" + cruceEscogido,
+      // cache: false,
+      success: function (json) {
+        // $("#reloj").html(json['tiempoActual']);
+
+        if (json != "") {
+          var estodo = JSON.parse(json);
+          countVehicular = 0;
+          countPeatonal = 0;
+
+          for (let index = 0; index < estodo["color"].length; index++) {
+            var color = "";
+            var tipoSemaforo = estodo["configuracion"][index]
+
+            switch (estodo["color"][index]) {
+              case "verde":
+                color = "#88c057";
+                if (tipoSemaforo == "vehicular") {
+                  countVehicular += 1;
+                  document.getElementById("semaforo_" + countVehicular).src = "resources\\verde.png";
+                } else {
+                  countPeatonal += 1;
+                  document.getElementById("semaforo_pea_" + countPeatonal).src = "resources\\verde_peatonal.png";
+                }
+                break;
+              case "amarillo":
+                color = "#fdca66";
+                countVehicular += 1;
+                document.getElementById("semaforo_" + countVehicular).src = "resources\\amarillo.png";
+                break;
+              case "rojo":
+                color = "#ed7161";
+                if (tipoSemaforo == "vehicular") {
+                  countVehicular += 1;
+                  console.log(document.getElementById("semaforo_" + countVehicular).src)
+                  document.getElementById("semaforo_" + countVehicular).src = "resources\\rojo.png";
+                } else {
+                  countPeatonal += 1;
+                  document.getElementById("semaforo_pea_" + countPeatonal).src = "resources\\rojo_peatonal.png";
+                }
+                break;
+              case "verde-intermitente":
+                color = "#50782d";
+                if (tipoSemaforo == "vehicular") {
+                  countVehicular += 1;
+                  document.getElementById("semaforo_" + countVehicular).src = "resources\\intermitencia_verde.gif";
+                } else {
+                  countPeatonal += 1;
+                  document.getElementById("semaforo_pea_" + countPeatonal).src = "resources\\intermitencia_verde_peatonal.gif";
+                }
+                break;
+              case "amarillo-intermitente":
+                color = "#FCB322";
+                countVehicular += 1;
+                document.getElementById("semaforo_" + countVehicular).src = "resources\\intermitencia_amarillo.gif";
+                break;
+              case "rojo-intermitente":
+                color = "#E94A35";
+                if (tipoSemaforo == "vehicular") {
+                  countVehicular += 1;
+                  document.getElementById("semaforo_" + countVehicular).src = "resources\\intermitencia_rojo.gif";
+                } else {
+                  countPeatonal += 1;
+                  document.getElementById("semaforo_pea_" + countPeatonal).src = "resources\\intermitencia_rojo_peatonal.gif";
+                }
+                break;
+              case "rojo-amarillo":
+                color = "#f59e63";
+                countVehicular += 1;
+                document.getElementById("semaforo_" + countVehicular).src = "resources\\rojo_amarillo.png";
+                break;
+              default:
+                color = "#ffffff";
+                countVehicular += 1;
+                document.getElementById("semaforo_" + countVehicular).src = "resources\\apagado.png";
+                break;
+            }
+
+            const estado = {
+              "nombre": "Señal " + (index + 1),
+              "label": "",
+              "color": color,
+              "inicio": new Date(0, 0, 0, 0, 0, parseInt(estodo["tiempo"]) - 1, 0),
+              "fin": new Date(0, 0, 0, 0, 0, parseInt(estodo["tiempo"]), 0)
+            };
+
+            debugger
+            if (historicoCruces[cruceEscogido.toString()] == undefined) {
+              historicoCruces[cruceEscogido.toString()] = [estado];
+            } else {
+              historicoCruces[cruceEscogido.toString()].push(estado);
+            };
+          }
+
+          while (countPeatonal < 2) {
+            countPeatonal += 1;
+            document.getElementById("semaforo_pea_" + countPeatonal).src = "resources\\apagado_peatonal.png";
+          }
+
+          while (countVehicular < 8) {
+            countVehicular += 1;
+            document.getElementById("semaforo_" + countVehicular).src = "resources\\apagado.png";
+          }
+        }
+      },
+    });
+  }
+}
+
+setInterval(getData, 1000);
